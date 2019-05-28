@@ -1,0 +1,35 @@
+
+    <div class="container">
+        <div style="text-align:center">Admin Page </div>
+      <div >  
+        <table class="table">  
+          <thead>  
+            <tr>  
+              <th class="hidden">Customer Id</th>  
+              <th>Full Name</th>  
+              <th>Date Of Birth</th>  
+              <th>Email id</th> 
+              <th>Role</th>
+              <th>Status</th>
+              <th>Edit</th>
+              <th>Delete</th>
+             
+            </tr>  
+          </thead>  
+          <tbody>
+            
+              <tr *ngFor="let customer of customers" >  
+              <td class="hidden">{{customer.customerId}}</td>  
+              <td>{{customer.fullName}}</td>  
+              <td>{{customer.dateOfBirth | date:'dd-MMM-yyyy'}}</td> 
+              <td>{{customer.email}}</td> 
+              <td><div *ngIf="customer.role == 'A'">Admin</div><div *ngIf="customer.role == 'E'">Executive</div></td>
+              <td> <div *ngIf="customer.status == 'A'">Active</div> <div *ngIf="customer.status == 'I'">Inactive</div></td>
+              <td><button (click)="onUpdate(customer)"  class="btn btn-info"> Edit</button></td>
+              <td><button (click)="onDelete(customer)" class="btn btn-info"> Delete</button> </td> 
+                
+            </tr>  
+          </tbody>  
+        </table>  
+      </div>  
+    </div>  

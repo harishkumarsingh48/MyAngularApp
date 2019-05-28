@@ -1,0 +1,201 @@
+<div class="col-md-6">
+  <h2 class="text-center">Add User</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="fullName">Full Name:</label>
+      <input type="text" formControlName="fullName" placeholder="First Name"  class="form-control" id="fullName" required >
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('fullName').valid && registerForm.get('fullName').touched">
+              Full Name is required </span>
+    </div>
+    
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="dateOfBirth">Date Of Birth:</label>
+      <input type="date" formControlName="dateOfBirth" placeholder="Date Of Birth"  class="form-control" id="dateOfBirth" required >
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('dateOfBirth').valid && registerForm.get('dateOfBirth').touched">
+              Date Of Birth is required </span>
+    </div>
+    
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="email">Email id:</label>
+      <input type="text" formControlName="email" placeholder="Email id"  class="form-control" id="email"  required >
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched">
+              Email is required </span>
+    </div>
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="mobileNo">Mobile No:</label>
+      <input type="text" formControlName="mobileNo" placeholder="Mobile No"  class="form-control" id="mobileNo"   >
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('mobileNo').valid && registerForm.get('mobileNo').touched">
+              Mobile No is required </span>
+    </div>
+    
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="loginId">Login Id:</label>
+      <input type="text" formControlName="loginId" placeholder="Login Id"  class="form-control" id="loginId"   >
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('loginId').valid && registerForm.get('loginId').touched">
+              Login Id is required </span>
+    </div>
+    
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="loginPassword">Login Password:</label>
+      <input type="text" formControlName="loginPassword" placeholder="Login Password"  class="form-control" id="loginPassword"   >
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('loginPassword').valid && registerForm.get('loginPassword').touched">
+              Login Password is required </span>
+    </div>
+    
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="village">Village:</label>
+      <input type="text" formControlName="village" placeholder="Village"  class="form-control" id="village"   >
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('village').valid && registerForm.get('village').touched">
+              Village is required </span>
+    </div>
+    
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="postOffice">Post Office:</label>
+      <input type="text" formControlName="postOffice" placeholder="Post Office"  class="form-control" id="postOffice"   >
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('postOffice').valid && registerForm.get('postOffice').touched">
+              Post Office is required </span>
+    </div>
+    
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="policeStation">Police Station:</label>
+      <input type="text" formControlName="policeStation" placeholder="Police Station"  class="form-control" id="policeStation"   >
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('policeStation').valid && registerForm.get('policeStation').touched">
+              Police Station is required </span>
+    </div>
+    
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="countryName">Country Name:</label>
+    <select formControlName="countryName" placeholder="Country Name"  class="form-control" id="countryName" 
+    (change)="onChangeCountry($event.target.value)" *ngIf="countryList && countryList.length > 0">
+    <option value="" selected="selected">Select country </option>
+	<option *ngFor ="let count of countryList" value={{count.countryCode}}>{{count.countryName}} </option>
+	</select>
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('countryName').valid && registerForm.get('countryName').touched">
+              Country Name is required </span>
+    </div>
+    
+    
+    <div class="row" *ngIf="stateList && stateList.length > 0">
+    <div class="form-group">
+      <label for="stateName">State Name:</label>
+      
+      <select formControlName="stateName" placeholder="State Name"  class="form-control" id="stateName"
+      (change)="onChangeState($event.target.value)"  >
+	<option value="">Select state</option>
+	<option *ngFor ="let state of stateList" value={{state.stateCode}}>{{state.stateName}} </option>
+	</select>
+	
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('stateName').valid && registerForm.get('stateName').touched">
+              State Name is required </span>
+    </div>
+    
+    
+    <div class="row" *ngIf="districtList && districtList.length > 0">
+    <div class="form-group">
+      <label for="districtName">District Name:</label>
+      <select formControlName="districtName" class="form-control" id="districtName" >
+      <option value="">Select district</option>
+	  <option *ngFor ="let district of districtList" value={{district.districtCode}}>{{district.districtName}} </option>
+	  </select>
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('districtName').valid && registerForm.get('districtName').touched">
+              District Name is required </span>
+    </div>
+    
+      
+    <div class="row">
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+     <input  type="radio"  value='Male'  formControlName="gender" [(ngModel)]='gender' required>Male
+	 <input  type="radio" value='Female'  formControlName="gender" [(ngModel)]='gender' required  > Female
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('gender').valid && registerForm.get('gender').touched">
+              Gender is required </span>
+    </div>
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="education">Highest Education:</label>
+     <input  type="radio"  value='matric'  formControlName="education" [(ngModel)]='education' required>Matric
+	 <input  type="radio" value='intermediate'  formControlName="education" [(ngModel)]='education' required  > Intermediate
+	  <input  type="radio" value='graduation'  formControlName="education" [(ngModel)]='education' required  > Graduation
+	  
+    </div>
+    
+    <span class="text-danger" *ngIf="!registerForm.get('education').valid && registerForm.get('education').touched">
+              Education is required </span>
+    </div>
+    
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="hobies">Hobbies:</label>
+      <input type="text" formControlName="hobbies" placeholder="Hobbies"  class="form-control" id="hobbies"   >
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('hobbies').valid && registerForm.get('hobbies').touched">
+              Hobbies is required </span>
+    </div>
+    
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="comment">comment:</label>
+      <input type="text" formControlName="comment" placeholder="comment"  class="form-control" id="comment"   >
+    </div>
+    <span class="text-danger" *ngIf="!registerForm.get('comment').valid && registerForm.get('comment').touched">
+              Status is required </span>
+    </div>
+    
+    
+   
+    
+    <div class="row">
+    <div class="form-group">
+      <label for="status">Status:</label>
+     <input  type="radio"  value='Active'  formControlName="status" [(ngModel)]='status' required >Active
+	 <input  type="radio" value='Inactive'  formControlName="status" [(ngModel)]='status' required  > Inactive
+    </div>
+    
+    <span class="text-danger" *ngIf="!registerForm.get('education').valid && registerForm.get('education').touched">
+              Status is required </span>
+    </div>
+    
+    
+    
+	<div class="row">
+    <button class="btn btn-success" [disabled]="!registerForm.valid" type="submit">Register</button>&nbsp;&nbsp;
+    <button class="btn btn-success" type="reset">Reset</button>
+    </div>
+  </form>
+</div>
